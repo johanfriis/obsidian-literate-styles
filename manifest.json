@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "This is a sample plugin for Obsidian. This plugin demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"isDesktopOnly": false
+  "id": "obsidian-literate-styles",
+  "name": "Literate Styles",
+  "minAppVersion": "0.16.0",
+  "description": "Develop styles straight within obsidian",
+  "author": "Johan Friis",
+  "authorUrl": "https://github.com/johanfriis",
+  "isDesktopOnly": true,
+  "version": "0.9.0"
 }
