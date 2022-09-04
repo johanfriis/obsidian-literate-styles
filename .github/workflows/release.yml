@@ -1,0 +1,55 @@
+name: Build obsidian plugin
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  PLUGIN_NAME: obsidian-literate-styles
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7.9.5
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: |
+          pnpm run build --if-present
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            main.js
+            manifest.json
