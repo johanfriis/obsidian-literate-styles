@@ -1,12 +1,15 @@
 {
   "name": "obsidian-literate-styles",
   "version": "0.9.0",
-  "description": "Develop styles straight within Obsidian",
+  "description": "Develop Obsidian styles straight within Obsidian",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-    "version": "node version-bump.mjs && git add manifest.json versions.json",
+    "version:changelog": "npx conventional-changelog-cli -p conventionalcommits -i CHANGELOG.md -s",
+    "version:bump": "node version-bump.mjs",
+    "version:git": "git add manifest.json versions.json CHANGELOG.md",
+    "version": "run-s version:*",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -21,6 +24,7 @@
     "builtin-modules": "3.3.0",
     "esbuild": "0.14.47",
     "husky": "8.0.1",
+    "npm-run-all": "4.1.5",
     "obsidian": "latest",
     "tslib": "2.4.0",
     "typescript": "4.7.4"
