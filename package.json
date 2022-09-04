@@ -1,6 +1,6 @@
 {
   "name": "obsidian-literate-styles",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Develop Obsidian styles straight within Obsidian",
   "main": "main.js",
   "scripts": {
