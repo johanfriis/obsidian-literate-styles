@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-    "version:changelog": "npx conventional-changelog-cli -p conventionalcommits -i CHANGELOG.md -s",
     "version:bump": "node version-bump.mjs",
     "version:git": "git add manifest.json versions.json CHANGELOG.md",
     "version": "run-s version:*",
@@ -14,6 +13,7 @@
   },
   "keywords": [],
   "author": "",
+  "private": "true",
   "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
