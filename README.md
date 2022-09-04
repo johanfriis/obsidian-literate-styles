@@ -1,73 +1,55 @@
-# Obsidian Sample Plugin
+# Obsidian Literate Styles
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+This plugin allows you to write styles in and Obsidian folder that are then
+applied to the current running Obsidian instance.
 
-This project uses Typescript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in Typescript Definition format, which contains TSDoc comments describing what it does.
+`TODO: add a GIF demonstrating the use`
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+### How to install
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Changes the default font color to red using `styles.css`.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+For now this plugin is not realeased on the Obsidian Plugin repository, so use
+[BRAT](https://obsidian.md/plugins?id=obsidian42-brat) to install a beta
+version.
 
-## First time developing plugins?
+### What are Literate Styles
 
-Quick starting guide for new plugin devs:
+Literate programming is a type of programming where you code is interspersed
+with text that describes the code, as well as some common features such as
+`tangle` and `weave`. Literate Styles does not currently support tangling and
+weaving, and I am not conviced that it would make sense, so for now I have no
+ambition to implement that part.
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+### CSS or SCSS
 
-## Releasing new releases
+Literate Styles run the css through the sass compiler, both so it can give some
+feedback if the css is not well formed, and to enable writing actual scss. At
+this point there is no difference whether the code block is labeled as as `css`
+or `scss` code block, both are treated the same way
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+### Performance Considerations
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+I have not tested this on very large amounts of css, but I can imagine that at
+some point it could start getting slow. I would like to develop some form of
+caching, but at the moment I'm uncertain of the best way of keeping a stable
+reference to a code block across file changes.
 
-## Adding your plugin to the community plugin list
+---
 
-- Check https://github.com/obsidianmd/obsidian-releases/blob/master/plugin-review.md
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## For Mantainer
 
-## How to use
+### How to release a new version
 
-- Clone this repo.
-- `npm i` or `yarn` to install dependencies
-- `npm run dev` to start compilation in watch mode.
+This describes my current workflow for releasing a new version:
 
-## Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
-
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+- Decide on version bump and commit it
+  - `npm version patch`
+  - `npm version minor`
+  - `npm version major`
+- Generate changelog and edit it to be human
+  - `npm run changelog`
+- Stage changelog and ammend previous commit
+  - `git add CHANGELOG.md`
+  - `git commit --amend`
+- Push commit to GH, letting the workflow handle the release
+  - `git push origin --tags`
+- Once release has been generated, modify version notes with changelog

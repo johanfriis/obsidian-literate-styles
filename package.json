@@ -1,6 +1,6 @@
 {
   "name": "obsidian-literate-styles",
-  "version": "0.9.1",
+  "version": "0.1.0",
   "description": "Develop Obsidian styles straight within Obsidian",
   "main": "main.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "version:bump": "node version-bump.mjs",
     "version:git": "git add manifest.json versions.json CHANGELOG.md",
     "version": "run-s version:*",
+    "changelog": "curl -s 'https://raw.githubusercontent.com/adamtabrams/change/master/change' | sh -s",
     "prepare": "husky install"
   },
   "keywords": [],

@@ -1,6 +1,17 @@
-### 0.9.1 (2022-09-04)
+# Changelog
 
+All notable changes to this project will be documented in this file.
 
-### Features
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-* :sparkles: literate styles plugin implementation ([d88767e](https://github.com/johanfriis/obsidian-literate-styles/commit/d88767e1dc0f19c653e2a99f4b82288b8d9c599f))
+## [Unreleased]
+
+## [1.0.0] - 2022-09-04
+
+### Added
+
+- Reference implementation of Literate Styles Obsidian plugin.
+
+[unreleased]: https://github.com/johanfriis/obsidian-literate-styles/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/1.0.0

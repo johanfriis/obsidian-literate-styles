@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-literate-styles",
-	"name": "Literate Styles",
-	"minAppVersion": "0.16.0",
-	"description": "Develop styles straight within obsidian",
-	"author": "Johan Friis",
-	"authorUrl": "https://github.com/johanfriis",
-	"isDesktopOnly": true,
-	"version": "0.9.1"
+  "id": "obsidian-literate-styles",
+  "name": "Literate Styles",
+  "minAppVersion": "0.15.9",
+  "description": "Develop styles straight within obsidian",
+  "author": "Johan Friis",
+  "authorUrl": "https://github.com/johanfriis",
+  "isDesktopOnly": true,
+  "version": "0.1.0"
 }
