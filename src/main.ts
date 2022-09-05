@@ -55,6 +55,10 @@ export default class LiterateStylesPlugin extends Plugin {
     /**
      * Add the style element we will be writing to to the header
      */
+    document
+      .querySelectorAll(`.${LITERATE_STYLES_CLASSNAME}`)
+      .forEach((e) => e.remove());
+
     this.style = document.createElement('style');
     this.style.setAttribute('type', 'text/css');
     this.style.addClass(LITERATE_STYLES_CLASSNAME);
