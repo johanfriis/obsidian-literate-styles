@@ -3,7 +3,7 @@
 Hello Obsidianites. Here is a little plugin I wrote that allows you to do
 **this** inside Obsidian.
 
-`TODO: add a GIF demonstrating the use`
+https://user-images.githubusercontent.com/3974347/188465663-9c20679c-fc03-465e-aeb4-cd03e311c997.mp4
 
 Basically, this plugin allows you to write styles in and Obsidian folder that
 are then applied to the current running Obsidian instance. A simple form of
