@@ -3,9 +3,9 @@
 Hello Obsidianites. Here is a little plugin I wrote that allows you to do
 **this** inside Obsidian.
 
-https://user-images.githubusercontent.com/3974347/188465663-9c20679c-fc03-465e-aeb4-cd03e311c997.mp4
+https://user-images.githubusercontent.com/3974347/188511615-86a49df7-4d54-47f4-af25-a28353b4c660.mp4
 
-Basically, this plugin allows you to write styles in and Obsidian folder that
+Basically, this plugin allows you to write styles in an Obsidian folder that
 are then applied to the current running Obsidian instance. A simple form of
 `Literate Programming`.
 
@@ -59,7 +59,9 @@ This describes my current workflow for releasing a new version:
 
 ## Development Log
 
-- 2022-09-04 - Released version 1.0.0. Realised that the plugin is a far shout
+- 2022-09-05 - Fixed a bug that occurs because settings cause `startPlugin` to
+  be called multiple times and creates multiple style elements in header.
+- 2022-09-04 - Released version 0.1.0. Realised that the plugin is a far shout
   from being a literate programming environment and that that is probably ok. I
   also had some ideas about block level caching and using frontmatter rather
   than a styled folder for determining what files to treat.
