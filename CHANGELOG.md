@@ -7,11 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2022-09-05
+
+### Changed
+
+- :bug: Saving settings caused new style elements to be added to head
+
 ## [0.1.0] - 2022-09-04
 
 ### Added
 
-- Reference implementation of Literate Styles Obsidian plugin.
+- :sparkles: Reference implementation of Literate Styles Obsidian plugin.
 
-[unreleased]: https://github.com/johanfriis/obsidian-literate-styles/compare/0.1.0...HEAD
+[unreleased]: https://github.com/johanfriis/obsidian-literate-styles/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/0.1.1
 [0.1.0]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/0.1.0
