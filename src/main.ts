@@ -1,7 +1,7 @@
 import { Plugin, TFile, TFolder, Notice } from 'obsidian';
 import { LiterateStylesTab, DEFAULT_SETTINGS, Settings } from './settings';
 import { extname } from 'path';
-import sass, { Exception } from 'sass';
+import { zcss } from 'zcss.js';
 
 const LITERATE_STYLES_CLASSNAME = 'literate-styles';
 
@@ -169,12 +169,12 @@ export default class LiterateStylesPlugin extends Plugin {
 
       for (const fence of styleFences) {
         const styles = fence.join('\n');
-        try {
-          const output = sass.compileString(styles);
-          localBuffer.add(output.css);
-        } catch (error) {
-          this.handleError(error, file);
-        }
+        /**
+         * For now we don't do any error handling. Eventually I want to pass
+         * this through prettier.
+         */
+        const output = zcss(styles);
+        localBuffer.add(output);
       }
       /**
        * Add the localBuffer to the global buffer
@@ -201,41 +201,6 @@ export default class LiterateStylesPlugin extends Plugin {
     this.style.innerHTML = css;
   }
 
-  /**
-   * Render the error in a Notice, and log it to the console as well.
-   * There is a timout that can be set for the Notice, and if it is 0
-   * then there will be no Notice
-   */
-  handleError(error: Exception, file: TFile) {
-    const { errorNoticeTimeout } = this.settings;
-
-    const headerMessage = `Literate Styles: Failed to parse ${file.path}`;
-
-    if (errorNoticeTimeout !== 0) {
-      /**
-       * Create a DocumentFragment to give some structure to the
-       * rendered error message
-       */
-      const fragment = document.createDocumentFragment();
-      const pre = document.createElement('pre');
-      const header = document.createElement('strong');
-
-      pre.textContent = error.message;
-      header.textContent = headerMessage;
-
-      fragment.appendChild(header);
-      fragment.appendChild(pre);
-
-      new Notice(fragment, errorNoticeTimeout);
-    }
-
-    /**
-     * We always log the error to the console
-     */
-    console.error(headerMessage);
-    console.error(error.message);
-  }
-
   onunload() {
     console.log('Unloading Literate Styles plugin ...');
     this.fileQueue.clear();
@@ -259,8 +224,11 @@ export default class LiterateStylesPlugin extends Plugin {
     return true;
   }
 
-  isFolder(arg: TFolder | TFile): arg is TFolder {
-    return (arg as TFolder).children !== undefined;
+  isFolder(arg: TFolder | TFile): boolean {
+    if (arg instanceof TFolder) {
+      return true;
+    }
+    return false;
   }
 
   async loadSettings() {
