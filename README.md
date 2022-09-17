@@ -12,7 +12,7 @@ are then applied to the current running Obsidian instance. A simple form of
 ### How to install
 
 For now this plugin is not realeased on the Obsidian Plugin repository, so use
-[BRAT][1] to install a beta version.
+[BRAT][brat] to install a beta version.
 
 ### What are Literate Styles
 
@@ -70,6 +70,17 @@ This describes my current workflow for releasing a new version:
   Unfortunately, this means we loose error messages, but I think I can live with
   that for now. Prettier should be able to give us some of those soon.
 
+## Installing in local vault
+
+To run the current build in a local vault, run the following scripts:
+
+```
+pnpm run build
+./scripts/install-in-vault.sh ~/Path/to/vault
+```
+
+This script is copied almost one-to-one from the dataview repo.
+
 ## Future Plans
 
 I was considering getting rid of the stylesFolder settings and reading the
@@ -83,9 +94,12 @@ efficiency, we could have some file level caching, which would allow a
 pregenerated stylesheet to be loaded very early in the render, and then only
 later would we parse changed files again. :thinking:
 
+See the dataview plugin for an example implementation of a file level cache
+using localforage, [FullIndex][fullindex]
+
 I was also thinking about having named style blocks, similar to what is is
-described in [jmeiners literate programing][2] examples. Take some inspiration
-from [srcweave][3]. This would allow me to have block level caching as well as
+described in [jmeiners literate programing][jmeiner] examples. Take some inspiration
+from [srcweave][srcweave]. This would allow me to have block level caching as well as
 show some UI directly on the block for when a block is being process, if there
 are errors, etc ...
 
@@ -93,6 +107,7 @@ Add an easy "inline" way to get the data for a css selector, á lá Cmd+Shift+c
 
 Add prettier support?
 
-[1]: https://obsidian.md/plugins?id=obsidian42-brat
-[2]: https://www.jmeiners.com/literate-programming
-[3]: https://github.com/justinmeiners/srcweave
+[brat]: https://obsidian.md/plugins?id=obsidian42-brat
+[fullindex]: https://github.com/blacksmithgu/obsidian-dataview/blob/master/src/data-index/index.ts
+[jmeiner]: https://www.jmeiners.com/literate-programming
+[srcweave]: https://github.com/justinmeiners/srcweave
