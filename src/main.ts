@@ -11,7 +11,7 @@ export default class LiterateStylesPlugin extends Plugin {
   buffer: Map<string, Set<string>>;
   fileQueue: Set<TFile>;
   timeoutId: NodeJS.Timeout;
-  style: HTMLStyleElement;
+  styleEl: HTMLStyleElement;
   skipDebounce: boolean;
 
   async onload() {
@@ -59,10 +59,10 @@ export default class LiterateStylesPlugin extends Plugin {
       .querySelectorAll(`.${LITERATE_STYLES_CLASSNAME}`)
       .forEach((e) => e.remove());
 
-    this.style = document.createElement('style');
-    this.style.setAttribute('type', 'text/css');
-    this.style.addClass(LITERATE_STYLES_CLASSNAME);
-    document.head.appendChild(this.style);
+    this.styleEl = document.createElement('style');
+    this.styleEl.setAttribute('type', 'text/css');
+    this.styleEl.addClass(LITERATE_STYLES_CLASSNAME);
+    document.head.appendChild(this.styleEl);
 
     /**
      * Attach event handlers to create and modify events throughout the vault
@@ -198,7 +198,7 @@ export default class LiterateStylesPlugin extends Plugin {
       .map((styleSet) => [...styleSet].join('\n'))
       .join('\n');
 
-    this.style.innerHTML = css;
+    this.styleEl.innerHTML = css;
   }
 
   onunload() {
