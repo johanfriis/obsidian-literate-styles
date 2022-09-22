@@ -59,12 +59,12 @@ This describes my current workflow for releasing a new version:
 
 ## Development Log
 
-- 2022-09-05 - Fixed a bug that occurs because settings cause `startPlugin` to
-  be called multiple times and creates multiple style elements in header.
 - 2022-09-04 - Released version 0.1.0. Realised that the plugin is a far shout
   from being a literate programming environment and that that is probably ok. I
   also had some ideas about block level caching and using frontmatter rather
   than a styled folder for determining what files to treat.
+- 2022-09-05 - Fixed a bug that occurs because settings cause `startPlugin` to
+  be called multiple times and creates multiple style elements in header.
 - 2022-09-11 - Exchanged sass for zcss. The only important part of sass today,
   in my opinion, is nesting. zcss gives us that in about 1KB vs ~4MB for sass.
   Unfortunately, this means we loose error messages, but I think I can live with

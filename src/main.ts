@@ -1,7 +1,7 @@
 import { Plugin, TFile, TFolder, Notice } from 'obsidian';
 import { LiterateStylesTab, DEFAULT_SETTINGS, Settings } from './settings';
 import { extname } from 'path';
-import { zcss } from 'zcss.js';
+import { render } from 'less';
 
 const LITERATE_STYLES_CLASSNAME = 'literate-styles';
 
@@ -146,7 +146,7 @@ export default class LiterateStylesPlugin extends Plugin {
        * and handled individually.
        */
       const styleFences: string[][] = [];
-      const startRegex = /^\s*```s?css/;
+      const startRegex = /^\s*```(css|less)/;
       const endRegex = /^\s*```/;
       let shouldCapture = false;
 
@@ -169,12 +169,7 @@ export default class LiterateStylesPlugin extends Plugin {
 
       for (const fence of styleFences) {
         const styles = fence.join('\n');
-        /**
-         * For now we don't do any error handling. Eventually I want to pass
-         * this through prettier.
-         */
-        const output = zcss(styles);
-        localBuffer.add(output);
+        localBuffer.add(styles);
       }
       /**
        * Add the localBuffer to the global buffer
@@ -198,7 +193,17 @@ export default class LiterateStylesPlugin extends Plugin {
       .map((styleSet) => [...styleSet].join('\n'))
       .join('\n');
 
-    this.styleEl.innerHTML = css;
+    try {
+      render(css, {}, (err, output) => {
+        if (err) {
+          throw err;
+        }
+        if (!output) return;
+        this.styleEl.innerHTML = output.css;
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   onunload() {

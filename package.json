@@ -19,6 +19,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
+    "@types/less": "3.0.3",
     "@types/node": "16.11.6",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",
@@ -31,6 +32,6 @@
     "typescript": "4.7.4"
   },
   "dependencies": {
-    "zcss.js": "1.0.1"
+    "less": "4.1.3"
   }
 }

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- refactor: switch css renderer to less
+- refactor: instead of running every single code fence through the less
+  renderer run all the code fences through less at once. This means we only get
+  a render when things are looking good, so styles don't flash in and out when
+  there is a compile error.
+
 ## [0.1.2] - 2022-09-11
 
 ### Changed
