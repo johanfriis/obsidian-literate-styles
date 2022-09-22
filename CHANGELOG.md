@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   renderer run all the code fences through less at once. This means we only get
   a render when things are looking good, so styles don't flash in and out when
   there is a compile error.
+- chore: change refresh rate interval to 100ms
+- feat: add postcss combining and sorting of declarations
 
 ## [0.1.2] - 2022-09-11
 

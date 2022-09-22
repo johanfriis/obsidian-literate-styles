@@ -2,6 +2,10 @@ import { Plugin, TFile, TFolder, Notice } from 'obsidian';
 import { LiterateStylesTab, DEFAULT_SETTINGS, Settings } from './settings';
 import { extname } from 'path';
 import { render } from 'less';
+import postcss from 'postcss';
+
+import combine from 'postcss-combine-duplicated-selectors';
+import sort from 'postcss-sorting';
 
 const LITERATE_STYLES_CLASSNAME = 'literate-styles';
 
@@ -194,12 +198,30 @@ export default class LiterateStylesPlugin extends Plugin {
       .join('\n');
 
     try {
-      render(css, {}, (err, output) => {
+      render(css, {}, async (err, output) => {
         if (err) {
           throw err;
         }
         if (!output) return;
-        this.styleEl.innerHTML = output.css;
+
+        const result = await postcss([
+          combine({ removeDuplicatedValues: true }),
+          sort({
+            order: [
+              'custom-properties',
+              'dollar-variables',
+              'declarations',
+              'at-rules',
+              'rules',
+            ],
+
+            'properties-order': 'alphabetical',
+
+            'unspecified-properties-position': 'bottom',
+          }),
+        ]).process(output.css);
+
+        this.styleEl.innerHTML = result.css;
       });
     } catch (err) {
       console.log(err);
