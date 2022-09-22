@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2022-09-23
+
+### Changed
+
 - refactor: switch css renderer to less
 - refactor: instead of running every single code fence through the less
   renderer run all the code fences through less at once. This means we only get
@@ -36,7 +40,8 @@ That is not acceptable.
 
 - :sparkles: Reference implementation of Literate Styles Obsidian plugin.
 
-[unreleased]: https://github.com/johanfriis/obsidian-literate-styles/compare/0.1.1...HEAD
+[unreleased]: https://github.com/johanfriis/obsidian-literate-styles/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/0.2.0
 [0.1.2]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/0.1.2
 [0.1.1]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/0.1.1
 [0.1.0]: https://github.com/johanfriis/obsidian-literate-styles/releases/tag/0.1.0
