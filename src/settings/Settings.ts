@@ -54,7 +54,7 @@ export class LiterateStylesTab extends PluginSettingTab {
       )
       .addSlider((slider) =>
         slider
-          .setLimits(0, 10000, 500)
+          .setLimits(0, 10000, 100)
           .setValue(this.plugin.settings.refreshRate)
           .setDynamicTooltip()
           .onChange(async (value) => {
